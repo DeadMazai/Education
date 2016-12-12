@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace SingletonGuy
 {
     public class Singleton
     {
         private static Lazy<Singleton> instance = new Lazy<Singleton>(() => new Singleton());
-        private readonly Dictionary<string, string> configuration;
+        private readonly ConcurrentDictionary<string, string> configuration;
 
         private Singleton()
         {
-            this.configuration = new Dictionary<string, string>();
+            this.configuration = new ConcurrentDictionary<string, string>();
         }
 
         public static Singleton GetInstance
